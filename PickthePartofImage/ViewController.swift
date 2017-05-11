@@ -70,6 +70,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let redFrameImage = describeRedFrame()
                 redFrameView?.removeFromSuperview()
                 redFrameView = UIImageView(image: redFrameImage)
+                changeShadow(imageView: redFrameView!)
                 imageViewOutlet.addSubview(redFrameView!)
             }
         } else {
@@ -104,6 +105,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //UIImageデータをImageViewに
         redFrameView = UIImageView(image: redFrameImage)
+        changeShadow(imageView: redFrameView!)
         imageViewOutlet.addSubview(redFrameView!)
         flgRedFrame = true
     }
@@ -202,6 +204,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         points.append(points[0])
         points.removeFirst()
         
+        
+        
         for pt in points {
             drawPath.addLine(to: pt)
         }
@@ -274,6 +278,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         return changePointList
+    }
+    
+    func changeShadow(imageView : UIImageView) {
+        imageView.layer.shadowOpacity = 0.6
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
     }
 
 }
